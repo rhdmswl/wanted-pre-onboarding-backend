@@ -10,7 +10,6 @@ import com.wanted.mapper.BoardMapper;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
-import sun.jvm.hotspot.debugger.linux.LinuxOopHandle;
 
 
 @Log4j
