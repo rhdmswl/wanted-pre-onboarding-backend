@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wanted.mapper.BoardMapper">
+
+	<select id="getList" resultType="com.wanted.domain.BoardVO">
+	<![CDATA[
+		select * from job_board where bno > 0 
+		]]>
+	</select>
+	
+		<insert id="insert">
+		insert into job_board (bno, company_id, position, pay, content, tech)
+		values (seq_board.nextval, #{company_id}, #{position}, #{pay}, #{content}, #{tech})
+	</insert>
+
+	<insert id="insertSelectKey">
+
+		<selectKey keyProperty="bno" order="BEFORE"
+			resultType="long">
+			select seq_board.nextval from dual
+		</selectKey>
+
+		insert into job_board (bno, company_id, position, pay, content, tech)
+		values (#{bno},
+		#{company_id}, #{position}, #{pay}, #{content}, #{tech})
+	</insert>
+
+	<select id="read" resultType="com.wanted.domain.BoardVO">
+			select * from job_board where bno =
+			#{bno}
+		</select>
+		
+	<delete id="delete">
+		delete job_board where bno = #{bno}
+	</delete>
+
+	<update id="update">
+		update job_board
+		set company_id= #{company_id},
+		position = #{position},
+		pay = #{pay},
+		content=#{content},
+		tech = #{tech}
+		where bno = #{bno}
+	</update>
+
+	
+
+</mapper>
